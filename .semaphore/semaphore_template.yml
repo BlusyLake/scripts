@@ -28,10 +28,13 @@ blocks:
           os_image: "ubuntu2204"
       jobs:
         - name: "Executar Script"
-          commands:
+            commands:
             - apt-get update
             - apt-get install -y postgresql-client
-            - ls -la
-            - ls -la teste
+            - which pg_dump
+            - pg_dump --version
+            - ls -la /usr/bin/pg_dump
             - chmod +x teste/backup.sh
             - ./teste/backup.sh
+
+          
