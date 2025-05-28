@@ -20,12 +20,29 @@ parameters:
 blocks:
   - name: "Executar Backup"
     task:
+      # Vincula os secrets armazenados no Semaphore
       secrets:
         - name: db-secrets
+
+      # Define variáveis de ambiente com base nos parâmetros e secrets
+      env_vars:
+        - name: DATABASE_ENTRIES
+          value: "{{ parameters.DATABASE_ENTRIES }}"
+        - name: DST_DB_HOST
+          value: "{{ parameters.DST_DB_HOST }}"
+        - name: DST_DB_PORT
+          value: "{{ parameters.DST_DB_PORT }}"
+        - name: DST_DB_USER
+          value: "{{ parameters.DST_DB_USER }}"
+        - name: DST_DB_PASSWORD
+          value: "{{ parameters.DST_DB_PASSWORD }}"
+        - name: BACKUP_DEST_PATH
+          value: "{{ parameters.BACKUP_DEST_PATH }}"
+
       jobs:
         - name: "Executar Script"
           commands:
             - apt-get update
             - apt-get install -y postgresql-client
-            - chmod +x scripts/backup.sh
-            - ./scripts/backup.sh
+            - chmod +x teste/backup.sh     # <- Corrigido o caminho
+            - ./teste/backup.sh
