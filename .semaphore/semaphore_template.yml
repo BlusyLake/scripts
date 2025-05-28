@@ -22,6 +22,10 @@ blocks:
     task:
       secrets:
         - name: db-secrets
+      agent:
+        machine:
+          type: "e1-standard-2"
+          os_image: "ubuntu2204"
       jobs:
         - name: "Executar Script"
           commands:
