@@ -25,5 +25,7 @@ blocks:
       jobs:
         - name: "Executar Script"
           commands:
+            - apt-get update
+            - apt-get install -y postgresql-client
             - chmod +x scripts/backup.sh
             - ./scripts/backup.sh
